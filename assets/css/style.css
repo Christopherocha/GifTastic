@@ -1,0 +1,33 @@
+#body {
+    background-color: #eee;
+}
+
+#word-bank {
+    min-height: 50px;
+}
+
+.image-container {
+    position: relative;
+    max-width: 575px;
+}
+
+#rating {
+    position: absolute;
+    width: 100%;
+}
+
+.option {
+    background-color: #5EBA7B;
+    color: #fff;
+    border-radius: 4px;
+    margin: 5px;
+}
+label {
+    width: 100%;
+}
+
+#input {
+    width: 90%;
+    margin: 0 10% 10px 0;
+
+}
