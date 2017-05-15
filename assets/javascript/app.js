@@ -14,7 +14,7 @@ var gifTastic = {
         this.createButtons();
     },
     runQuery: function(val){
-        var str = val.replace(" ", "+");
+        var str = val//.replace(" ", "+");
 
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + str + "&limit=10&api_key=dc6zaTOxFJmzC";
 
@@ -23,15 +23,15 @@ var gifTastic = {
         method: 'GET'
         }).done(function(response) {
             currentChoice = response;
-            this.pushImgs()
+            gifTastic.pushImgs()
         });
     },
     pushImgs: function(){
         var str = "";
-        for(var i = 0; i < currentChoice.length; i++){
+        for(var i = 0; i < currentChoice.data.length; i++){
             // Iterate through the images array and then place in to the html containers on the index.html page
-            str = str + "<div class=\"image-container\"><div class\"rating\">Rating: " + currentChoice[i].rating + "</div>";
-            str = str + "<img class\"image\" src=\"" + currentChoice[i].images.fixed_height_still.url + " /></div>"
+            str = str + "<div class=\"image-container\"><div class=\"rating\">Rating: " + currentChoice.data[i].rating + "</div>";
+            str = str + "<img class\"image\" data-index=\"" + i + "\" data-animated=\"no\" src=\"" + currentChoice.data[i].images.fixed_height_still.url + "\" /></div>"
         }
 
         $("#images").html(str);
@@ -46,6 +46,23 @@ $(document).ready(function(){
         e.preventDefault
         var input = $("#input").val();
         gifTastic.addOption(input);
+    })
+
+    $(".option").on("click", function(){
+        var val = $(this).data("query");
+        gifTastic.runQuery(val);
+    })
+
+    $("#images").on("click", function(){
+        var index = $(this).data("index");
+        var animated = $(this).data("animated");
+        if(animated === "no") {
+            $(this).attr("src", currentChoice.data[index].images.fixed_height.url);
+            $(this).data("animated", "yes");
+        } else {
+            $(this).attr("src", currentChoice.data[index].images.fixed_height_still.url);
+            $(this).data("animated", "yes");
+        }
     })
 
 })

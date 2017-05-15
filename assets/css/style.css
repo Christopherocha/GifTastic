@@ -6,14 +6,28 @@
     min-height: 50px;
 }
 
+#images {
+    cursor: pointer;
+    /*position: relative;*/
+}
+
 .image-container {
     position: relative;
     max-width: 575px;
+    width: 20%;
+    /*overflow: visible;*/
+    margin: 20px;
+    /*overflow: visible;*/
+    position: relative;
+    display: inline-table;
+    /*float: left;*/
 }
 
-#rating {
-    position: absolute;
+.rating {
+    /*position: absolute;*/
     width: 100%;
+    font-weight: bold;
+    margin: 5px 0;
 }
 
 .option {
