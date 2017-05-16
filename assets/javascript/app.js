@@ -31,7 +31,7 @@ var gifTastic = {
         for(var i = 0; i < currentChoice.data.length; i++){
             // Iterate through the images array and then place in to the html containers on the index.html page
             str = str + "<div class=\"image-container\"><div class=\"rating\">Rating: " + currentChoice.data[i].rating + "</div>";
-            str = str + "<img class\"image\" data-index=\"" + i + "\" data-animated=\"no\" src=\"" + currentChoice.data[i].images.fixed_height_still.url + "\" /></div>"
+            str = str + "<a href=\"#\" id=\"click\" data-index=\"" + i + "\" data-animated=\"no\"><img class=\"image\"  src=\"" + currentChoice.data[i].images.fixed_height_still.url + "\" /></a></div>"
         }
 
         $("#images").html(str);
@@ -43,24 +43,26 @@ $(document).ready(function(){
     gifTastic.createButtons();
 
     $("#submit").on("click", function(e){
-        e.preventDefault
+        e.preventDefault();
         var input = $("#input").val();
         gifTastic.addOption(input);
     })
 
-    $(".option").on("click", function(){
+    $(".option").on("click", function(e){
+        e.preventDefault();
         var val = $(this).data("query");
         gifTastic.runQuery(val);
     })
 
-    $("#images").on("click", function(){
+    $("#images").on("click", "#click", function(e){
+        e.preventDefault();
         var index = $(this).data("index");
         var animated = $(this).data("animated");
         if(animated === "no") {
-            $(this).attr("src", currentChoice.data[index].images.fixed_height.url);
+            $(this).find(".image").attr("src", currentChoice.data[index].images.fixed_height.url);
             $(this).data("animated", "yes");
         } else {
-            $(this).attr("src", currentChoice.data[index].images.fixed_height_still.url);
+            $(this).find(".image").attr("src", currentChoice.data[index].images.fixed_height_still.url);
             $(this).data("animated", "yes");
         }
     })
