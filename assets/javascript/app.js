@@ -63,7 +63,7 @@ $(document).ready(function(){
             $(this).data("animated", "yes");
         } else {
             $(this).find(".image").attr("src", currentChoice.data[index].images.fixed_height_still.url);
-            $(this).data("animated", "yes");
+            $(this).data("animated", "no");
         }
     })
 
