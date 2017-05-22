@@ -1,7 +1,7 @@
 var currentChoice = "";
 
 var gifTastic = {
-    wordBank: ["luis suarez", "steven gerrard", "philippe countinho", "roberto firmino"],
+    wordBank: ["luis suarez", "steven gerrard", "philippe coutinho", "roberto firmino"],
     createButtons: function(){
         var htmlString = ""
         for(var i = 0; i < this.wordBank.length; i++){
